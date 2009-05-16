@@ -1,0 +1,7 @@
+Content\Shaders\TransformColorTexture.xnb
+Content\Textures\harmony.xnb
+Content\Textures\Skybox\black_side.xnb
+Content\Textures\Skybox\red_side.xnb
+Content\Models\cube.xnb
+Content\Shaders\BasicShader.xnb
+Content\Shaders\PostProcessors\Invert.xnb

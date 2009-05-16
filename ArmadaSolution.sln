@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Armada", "Armada\Armada.csproj", "{CC5B34A9-0832-4BF3-85DC-90C06334769F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harmony", "Harmony\Harmony.csproj", "{C6B2DEFA-B68C-493A-97C9-832E99211160}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC5B34A9-0832-4BF3-85DC-90C06334769F}.Debug|x86.ActiveCfg = Debug|x86
+		{CC5B34A9-0832-4BF3-85DC-90C06334769F}.Debug|x86.Build.0 = Debug|x86
+		{CC5B34A9-0832-4BF3-85DC-90C06334769F}.Release|x86.ActiveCfg = Release|x86
+		{CC5B34A9-0832-4BF3-85DC-90C06334769F}.Release|x86.Build.0 = Release|x86
+		{252B45C4-AC7F-452B-9697-F1CFB75B4822}.Debug|x86.ActiveCfg = Debug|x86
+		{252B45C4-AC7F-452B-9697-F1CFB75B4822}.Release|x86.ActiveCfg = Release|x86
+		{C6B2DEFA-B68C-493A-97C9-832E99211160}.Debug|x86.ActiveCfg = Debug|x86
+		{C6B2DEFA-B68C-493A-97C9-832E99211160}.Debug|x86.Build.0 = Debug|x86
+		{C6B2DEFA-B68C-493A-97C9-832E99211160}.Release|x86.ActiveCfg = Release|x86
+		{C6B2DEFA-B68C-493A-97C9-832E99211160}.Release|x86.Build.0 = Release|x86
+		{C2815C98-A577-49D3-AA04-42825A2C265C}.Debug|x86.ActiveCfg = Debug|x86
+		{C2815C98-A577-49D3-AA04-42825A2C265C}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
