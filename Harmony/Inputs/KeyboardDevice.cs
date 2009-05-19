@@ -20,9 +20,9 @@ namespace Harmony.Inputs
         private Collection<Keys> Pressed { get; set; }
         private Collection<Keys> Released { get; set; }
 
-        public event KeyPressHandler OnKeyPressed;
-        public event KeyHoldHandler OnKeyHeld;
-        public event KeyReleaseHandler OnKeyReleased;
+        public event KeyPressHandler KeyPress;
+        public event KeyHoldHandler KeyHold;
+        public event KeyReleaseHandler KeyRelease;
 
         public override void Initialize()
         {
@@ -63,19 +63,19 @@ namespace Harmony.Inputs
             }
 
             // Event Calls
-            if (Pressed.Count > 0 && null != OnKeyPressed)
+            if (Pressed.Count > 0 && null != KeyPress)
             {
-                OnKeyPressed(Pressed);
+                KeyPress(Pressed);
             }
 
-            if (Held.Count > 0 && null != OnKeyHeld)
+            if (Held.Count > 0 && null != KeyHold)
             {
-                OnKeyHeld(Held);
+                KeyHold(Held);
             }
 
-            if (Released.Count > 0 && null != OnKeyReleased)
+            if (Released.Count > 0 && null != KeyRelease)
             {
-                OnKeyReleased(Released);
+                KeyRelease(Released);
             }
         }
 

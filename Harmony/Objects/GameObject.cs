@@ -16,6 +16,7 @@ namespace Harmony.Objects
 
         #region ILoadable Members
 
+        // path these through to specific objects
         public abstract void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager);
         public abstract void UnloadContent();
 
@@ -23,10 +24,12 @@ namespace Harmony.Objects
 
         #region IRenderable Members
 
+        // support general rendering operations
         public Vector3 Position { get; set; }
         public Vector3 Scale { get; set; }
         public Quaternion Rotation { get; set; }
 
+        // shaders
         public string Shader { get; set; }
         public VertexDeclaration VertexDeclaration { get; set; }
 

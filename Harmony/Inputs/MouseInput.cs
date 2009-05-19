@@ -89,7 +89,6 @@ namespace Harmony.Inputs
                 InitialMousePosition = currentMousePosition;
             }
 
-
             // Mouse Buttons Checks
             Pressed = new Collection<MouseButton>();
             Held = new Collection<MouseButton>();

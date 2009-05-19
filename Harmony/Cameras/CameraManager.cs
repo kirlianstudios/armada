@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Harmony.Components;
+﻿using Harmony.Components;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Harmony.Cameras
 {
@@ -13,7 +8,6 @@ namespace Harmony.Cameras
         internal CameraManager(Microsoft.Xna.Framework.Game a_game)
             : base(a_game)
         {
-
         }
 
         private static Camera DefaultCamera { get; set; }
@@ -24,9 +18,9 @@ namespace Harmony.Cameras
         {
             DefaultCamera = new Camera(GraphicsDevice.Viewport);
 
-            AddCamera("HMEngine.HMCameras.DefaultCamera", DefaultCamera);
+            AddCamera("Harmony.Cameras.Default", DefaultCamera);
 
-            SetActiveCamera("HMEngine.HMCameras.DefaultCamera");
+            SetActiveCamera("Harmony.Cameras.Default");
 
             base.LoadContent();
         }
@@ -35,7 +29,7 @@ namespace Harmony.Cameras
         {
             ComponentManager.AddComponent(a_handle, a_camera);
         }
-        
+
         public static void SetActiveCamera(string a_handle)
         {
             ActiveCamera = ComponentManager.GetComponent<Camera>(a_handle);

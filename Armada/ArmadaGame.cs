@@ -43,23 +43,23 @@ namespace Armada
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
+        /// <param name="aGameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime aGameTime)
         {
             // TODO: Add your update logic here
 
-            base.Update(gameTime);
+            base.Update(aGameTime);
         }
 
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
+        /// <param name="aGameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime aGameTime)
         {
             // TODO: Add your drawing code here
 
-            base.Draw(gameTime);
+            base.Draw(aGameTime);
         }
     }
 }

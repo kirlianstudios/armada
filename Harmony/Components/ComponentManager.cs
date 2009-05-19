@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Harmony.Effects;
+using Harmony.Inputs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Reflection;
+using System.Reflection.Cache;
+using System.Reflection.Emit;
 
 namespace Harmony.Components
 {
@@ -24,6 +28,7 @@ namespace Harmony.Components
             Initializables = new Dictionary<string, IInitializable>();
             Disposables = new Dictionary<string, IDisposable>();
             PostProcessables = new Dictionary<string, IPostProcessable>();
+            Pickables = new Dictionary<string, IPickable>();
         }
 
         private static Dictionary<string, IComponent> Components { get; set; }
@@ -33,6 +38,9 @@ namespace Harmony.Components
         private static Dictionary<string, IInitializable> Initializables { get; set; }
         private static Dictionary<string, IDisposable> Disposables { get; set; }
         private static Dictionary<string, IPostProcessable> PostProcessables { get; set; }
+        public static Dictionary<string, IPickable> Pickables { get; private set; }
+
+        public static List<IPickable> Picked { get; private set; }
 
         /// <summary>
         /// Gets the component.
@@ -85,6 +93,11 @@ namespace Harmony.Components
             if (a_component is IPostProcessable)
             {
                 PostProcessables.Add(a_handle, (IPostProcessable) a_component);
+            }
+
+            if (a_component is IPickable)
+            {
+                Pickables.Add(a_handle, (IPickable) a_component);
             }
         }
 

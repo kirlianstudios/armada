@@ -1,4 +1,6 @@
-﻿using Harmony.Cameras;
+﻿using System;
+using Harmony.Cameras;
+using Harmony.Components;
 using Harmony.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -7,24 +9,39 @@ using Effect=Microsoft.Xna.Framework.Graphics.Effect;
 
 namespace Harmony.Objects
 {
-    public class Model : GameObject
+    public class Model : GameObject, IPickable
     {
-        public Model(string asset)
+        public Model(string a_asset)
         {
-            Asset = asset;
+            Asset = a_asset;
             Scale = new Vector3(1);
 
             AmbientColor = new Vector3(0.15f);
             DiffuseColor = new Vector3(0.25f);
             SpecularPower = 8;
+
+            Selected = false;
         }
+
+        private bool Selected { get; set; }
+        public BoundingBox BoundingBox { get; set; }
 
         public Vector3 AmbientColor { get; set; }
         public Vector3 DiffuseColor { get; set; }
         public float SpecularPower { get; set; }
 
         private string Asset { get; set; }
-        private Microsoft.Xna.Framework.Graphics.Model BackingModel { get; set; }
+        public Microsoft.Xna.Framework.Graphics.Model BackingModel { get; private set; }
+
+        public BoundingBox GetBoundingBox()
+        {
+            return BoundingBox;
+        }
+
+        public void SetSelected(bool a_selected)
+        {
+            Selected = a_selected;
+        }
 
         public override void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager)
         {

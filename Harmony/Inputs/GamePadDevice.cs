@@ -64,7 +64,6 @@ namespace Harmony.Inputs
         private Collection<ButtonState> PressedStates { get; set; }
         private Collection<GamePadButton> Released { get; set; }
 
-
         public GamePadDevice(PlayerIndex a_player)
         {
             PlayerIndex = a_player;
