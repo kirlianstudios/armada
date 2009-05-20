@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Harmony.Controls.ControlManager">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAIAAIAAAAAA=</HashCode>
+      <FileName>Controls\ControlManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Harmony.Cameras.Camera">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAIBCEAIAgAAAAACAgEAABABACAAAEAABQAAA=</HashCode>
+      <FileName>Cameras\Camera.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Harmony.Controls.Schemes.Scheme">
+    <Position X="13" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAQAAQAAAAAAAAAQAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Controls\Schemes\Scheme.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Harmony.Devices.Inputs.InputDevice">
+    <Position X="15" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Devices\Inputs\InputDevice.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Harmony.Effects.Effect">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAIAAAAAAAAAAAQAAAAAAAAgAAAACAQ=</HashCode>
+      <FileName>Effects\Effect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Harmony.Modules.Module">
+    <Position X="15.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Modules\Module.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Harmony.Modules.Skybox.SkyboxModule">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQDAAAAAAAAAAAAAAAIgAAAAAAAAAAA=</HashCode>
+      <FileName>Modules\Skybox\SkyboxModule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Harmony.Objects.GameObject">
+    <Position X="15.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAAAAAAIAgAAIAAAAAAAAAAAABABAAAAAAAAQ=</HashCode>
+      <FileName>Objects\GameObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Harmony.RayPicker">
+    <Position X="13.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAkAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RayPicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Harmony.Cameras.CameraManager">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAEAACAAQ=</HashCode>
+      <FileName>Cameras\CameraManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Harmony.Objects.Quad" Collapsed="true">
+    <Position X="12.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAEBIggAAAAAQ=</HashCode>
+      <FileName>Objects\Quad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Harmony.Objects.Model" Collapsed="true">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAABAAAAAAAAAAAAAgACAAAAAAAJAgAUQAgAY=</HashCode>
+      <FileName>Objects\Model.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Harmony.Objects.GameObjectManager">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\GameObjectManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Harmony.Devices.IDevice">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Devices\IDevice.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Harmony.Devices.Inputs.IInputDevice">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Devices\Inputs\IInputDevice.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Harmony.Components.IUpdateable">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\IUpdateable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Harmony.Components.IInitializable">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\IInitializable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Harmony.Components.IComponent">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\IComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Harmony.Controls.Schemes.IScheme">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Controls\Schemes\IScheme.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Harmony.Modules.IModule">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAIgAAAAAAAAAAA=</HashCode>
+      <FileName>Modules\IModule.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

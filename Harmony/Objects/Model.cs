@@ -1,5 +1,4 @@
-﻿using System;
-using Harmony.Cameras;
+﻿using Harmony.Cameras;
 using Harmony.Components;
 using Harmony.Effects;
 using Microsoft.Xna.Framework;
@@ -33,6 +32,8 @@ namespace Harmony.Objects
         private string Asset { get; set; }
         public Microsoft.Xna.Framework.Graphics.Model BackingModel { get; private set; }
 
+        #region IPickable Members
+
         public BoundingBox GetBoundingBox()
         {
             return BoundingBox;
@@ -42,6 +43,8 @@ namespace Harmony.Objects
         {
             Selected = a_selected;
         }
+
+        #endregion
 
         public override void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager)
         {

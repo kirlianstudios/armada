@@ -1,11 +1,12 @@
 ﻿using Harmony.Cameras;
+using Harmony.Components;
 using Harmony.Effects;
 using Harmony.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace HMEngine.HMObjects
+namespace Harmony.Objects
 {
     public class Skybox : GameObject
     {

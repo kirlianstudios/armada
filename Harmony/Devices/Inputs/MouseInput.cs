@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using Harmony.Inputs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Harmony.Inputs
+namespace Harmony.Devices.Inputs
 {
     public enum MouseButton
     {
@@ -50,11 +49,11 @@ namespace Harmony.Inputs
             }
         }
 
-        public event MouseClickedHandler OnMouseClicked;
-        public event MouseHeldHandler OnMouseHeld;
-        public event MouseReleasedHandler OnMouseReleased;
-        public event MouseMovedHandler OnMouseMoved;
-        public event MouseScrolledHandler OnMouseScrolled;
+        public event MouseClickedHandler MouseClicked;
+        public event MouseHeldHandler MouseHeld;
+        public event MouseReleasedHandler MouseReleased;
+        public event MouseMovedHandler MouseMoved;
+        public event MouseScrolledHandler MouseScrolled;
 
         public override void Initialize()
         {
@@ -115,34 +114,41 @@ namespace Harmony.Inputs
                     Released.Add((MouseButton) i);
                 }
             }
-            
+
             // Event Calls
-            if (scrollMoved != 0 && null != OnMouseScrolled)
+            if (scrollMoved != 0 && null != MouseScrolled)
             {
-                OnMouseScrolled(scrollMoved);
+                MouseScrolled(scrollMoved);
             }
-            if (mouseMoved.Length() > 0 && null != OnMouseMoved)
+            if (mouseMoved.Length() > 0 && null != MouseMoved)
             {
-                OnMouseMoved(mouseMoved);
+                MouseMoved(mouseMoved);
             }
-            if (Pressed.Count > 0 && null != OnMouseClicked)
+            if (Pressed.Count > 0 && null != MouseClicked)
             {
-                OnMouseClicked(currentMousePosition, Pressed);
+                MouseClicked(currentMousePosition, Pressed);
             }
-            if (Held.Count > 0 && null != OnMouseHeld)
+            if (Held.Count > 0 && null != MouseHeld)
             {
-                OnMouseHeld(currentMousePosition, Held);
+                MouseHeld(currentMousePosition, Held);
             }
-            if (Released.Count > 0 && null != OnMouseReleased)
+            if (Released.Count > 0 && null != MouseReleased)
             {
-                OnMouseReleased(currentMousePosition, Released);
+                MouseReleased(currentMousePosition, Released);
             }
         }
 
         private static Collection<ButtonState> MousePressedStateArray(MouseState mouse)
         {
             var states = new Collection<ButtonState>
-                             {mouse.LeftButton, mouse.MiddleButton, mouse.RightButton, mouse.XButton1, mouse.XButton2};
+                             {
+                                 mouse.LeftButton,
+                                 mouse.MiddleButton,
+                                 mouse.RightButton,
+                                 mouse.XButton1,
+                                 mouse.XButton2
+                             };
+
             return states;
         }
 

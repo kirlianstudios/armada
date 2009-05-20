@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using Harmony.Inputs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Harmony.Inputs
+namespace Harmony.Devices.Inputs
 {
     public enum GamePadButton
     {
@@ -43,6 +42,22 @@ namespace Harmony.Inputs
 
     public sealed class GamePadDevice : InputDevice
     {
+        public GamePadDevice(PlayerIndex a_player)
+        {
+            PlayerIndex = a_player;
+            GamePadState = GamePad.GetState(PlayerIndex);
+            ButtonStates = new Collection<PressedState>();
+            DButtonStates = new Collection<PressedState>();
+            for (int i = 0; i < 10; i++)
+            {
+                ButtonStates.Add(PressedState.Idle);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                DButtonStates.Add(PressedState.Idle);
+            }
+        }
+
         private Collection<PressedState> ButtonStates { get; set; }
         private Collection<PressedState> DButtonStates { get; set; }
 
@@ -63,22 +78,6 @@ namespace Harmony.Inputs
         private Collection<GamePadButton> Pressed { get; set; }
         private Collection<ButtonState> PressedStates { get; set; }
         private Collection<GamePadButton> Released { get; set; }
-
-        public GamePadDevice(PlayerIndex a_player)
-        {
-            PlayerIndex = a_player;
-            GamePadState = GamePad.GetState(PlayerIndex);
-            ButtonStates = new Collection<PressedState>();
-            DButtonStates = new Collection<PressedState>();
-            for (int i = 0; i < 10; i++)
-            {
-                ButtonStates.Add(PressedState.Idle);
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                DButtonStates.Add(PressedState.Idle);
-            }
-        }
 
         public event GamePadPressedHandler OnButtonPressed;
         public event GamePadReleasedHandler OnButtonReleased;
@@ -194,12 +193,20 @@ namespace Harmony.Inputs
                                  a_gamePad.Buttons.X,
                                  a_gamePad.Buttons.Y
                              };
+
             return states;
         }
 
         private static Collection<ButtonState> DPadPressedStateArray(GamePadDPad a_dPad)
         {
-            var states = new Collection<ButtonState> {a_dPad.Down, a_dPad.Left, a_dPad.Right, a_dPad.Up};
+            var states = new Collection<ButtonState>
+                             {
+                                 a_dPad.Down,
+                                 a_dPad.Left,
+                                 a_dPad.Right,
+                                 a_dPad.Up
+                             };
+
             return states;
         }
     }

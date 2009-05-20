@@ -44,5 +44,12 @@ namespace Harmony.Effects
         {
             
         }
+
+        #region ILoadable Members
+
+
+        public string Path { get; set; }
+
+        #endregion
     }
 }

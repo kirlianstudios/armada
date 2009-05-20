@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Harmony.Effects;
-using Harmony.Inputs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
@@ -21,24 +20,30 @@ namespace Harmony.Components
         /// <param name="a_game">The a_game.</param>
         public ComponentManager(Game a_game) : base(a_game)
         {
-            Components = new Dictionary<string, IComponent>();
-            Renderables = new Dictionary<string, IRenderable>();
-            Loadables = new Dictionary<string, ILoadable>();
-            Updateables = new Dictionary<string, IUpdateable>();
-            Initializables = new Dictionary<string, IInitializable>();
-            Disposables = new Dictionary<string, IDisposable>();
-            PostProcessables = new Dictionary<string, IPostProcessable>();
-            Pickables = new Dictionary<string, IPickable>();
+            Components = new ComponentCollection<IComponent>();
+
+            Renderables = new ComponentCollection<IRenderable>();
+            Loadables = new ComponentCollection<ILoadable>();
+            Updateables = new ComponentCollection<IUpdateable>();
+            Initializables = new ComponentCollection<IInitializable>();
+
+            Pickables = new ComponentCollection<IPickable>();
+
+            PostProcessables = new ComponentCollection<IPostProcessable>();
+
+            Disposables = new ComponentCollection<IDisposable>();
         }
 
-        private static Dictionary<string, IComponent> Components { get; set; }
-        private static Dictionary<string, IRenderable> Renderables { get; set; }
-        private static Dictionary<string, ILoadable> Loadables { get; set; }
-        private static Dictionary<string, IUpdateable> Updateables { get; set; }
-        private static Dictionary<string, IInitializable> Initializables { get; set; }
-        private static Dictionary<string, IDisposable> Disposables { get; set; }
-        private static Dictionary<string, IPostProcessable> PostProcessables { get; set; }
-        public static Dictionary<string, IPickable> Pickables { get; private set; }
+        public static ComponentCollection<IComponent> Components { get; private set; }
+
+        public static ComponentCollection<IRenderable> Renderables { get; private set; }
+        public static ComponentCollection<ILoadable> Loadables { get; private set; }
+        public static ComponentCollection<IUpdateable> Updateables { get; private set; }
+        public static ComponentCollection<IInitializable> Initializables { get; private set; }
+        public static ComponentCollection<IPostProcessable> PostProcessables { get; private set; }
+        public static ComponentCollection<IPickable> Pickables { get; private set; }
+
+        public static ComponentCollection<IDisposable> Disposables { get; private set; }
 
         public static List<IPickable> Picked { get; private set; }
 
@@ -58,7 +63,17 @@ namespace Harmony.Components
             throw new ComponentException("No component with the name " + a_handle + " exists");
         }
 
-        public static void AddComponent(string a_handle, IComponent a_component)
+        internal static T GetComponent<T>(Guid a_guid)
+        {
+            if (Components.ContainsKey(a_guid) && Components[a_guid] is T)
+            {
+                return (T)Components[a_guid];
+            }
+
+            throw new ComponentException("No component with the GUID " + a_guid + " exists");
+        }
+
+        public static void AddComponent(Object a_handle, IComponent a_component)
         {
             if (a_component is IComponent)
             {

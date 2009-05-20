@@ -1,3 +1,5 @@
+using Harmony.Components;
+using Harmony.Objects;
 using Microsoft.Xna.Framework;
 using Game=Harmony.Game;
 
@@ -17,6 +19,31 @@ namespace Armada
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            //System.Reflection.Assembly.GetAssembly().CreateInstance("")
+            //// Tile
+            //    for (int row = 0; row < 10; row++)
+            //    {
+            //        for (int column = 0; column < 10; column++)
+            //        {
+            //            var model = new Model("Models/tile");
+            //            //model.Shader = "TCT";
+            //            model.Position = new Vector3(row, column, 0);
+            //            model.BoundingBox = new BoundingBox(new Vector3(row, 0, column), new Vector3(row*1.0f, 0.1f, row*column));
+            //            var quad = new Quad("Textures/Harmony", new Color(((float)row) / 10.0f, ((float)column) / 10.0f, 0));
+            //            GameObjectManager.AddGameObject("quad" + row + column, quad);
+            //            quad.Position = new Vector3(row, -1.0f, -column);
+            //            quad.Shader = "TCT";
+            //            quad.Rotation = Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), -((float)Math.PI)/2.0f);
+            //            quad.Scale = new Vector3(1.0f);
+
+            //            GameObjectManager.AddGameObject("tile" + row + column, model);
+            //        }
+            //    }
+
+            var model = new Model("Models/ship");
+            ComponentManager.AddComponent("ship", model);
+
+            //KeyboardDevice.
 
             base.Initialize();
         }

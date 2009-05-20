@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Harmony.Inputs
+namespace Harmony.Devices.Inputs
 {
-    public delegate void KeyPressHandler(Collection<Keys> a_keys);
+    public delegate void KeyPressed(Collection<Keys> a_keys);
 
-    public delegate void KeyHoldHandler(Collection<Keys> a_keys);
+    public delegate void KeyHeld(Collection<Keys> a_keys);
 
-    public delegate void KeyReleaseHandler(Collection<Keys> a_keys);
+    public delegate void KeyReleased(Collection<Keys> a_keys);
 
     public sealed class KeyboardDevice : InputDevice
     {
@@ -20,16 +20,16 @@ namespace Harmony.Inputs
         private Collection<Keys> Pressed { get; set; }
         private Collection<Keys> Released { get; set; }
 
-        public event KeyPressHandler KeyPress;
-        public event KeyHoldHandler KeyHold;
-        public event KeyReleaseHandler KeyRelease;
+        public event KeyPressed KeyPress;
+        public event KeyHeld KeyHold;
+        public event KeyReleased KeyRelease;
 
         public override void Initialize()
         {
             LastState = Keyboard.GetState();
         }
 
-        public override void Update(GameTime aAGameTime)
+        public override void Update(GameTime a_gameTime)
         {
             KeyboardState currentState = Keyboard.GetState();
 

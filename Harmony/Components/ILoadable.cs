@@ -7,5 +7,7 @@ namespace Harmony.Components
     {
         void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager);
         void UnloadContent();
+
+        string Path { get; set; }
     }
 }

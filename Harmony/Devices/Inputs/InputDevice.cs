@@ -1,10 +1,10 @@
 ﻿using System;
 using Harmony.Components;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 using IUpdateable=Harmony.Components.IUpdateable;
 
-namespace Harmony.Inputs
+namespace Harmony.Devices.Inputs
 {
     public enum PressedState
     {
@@ -14,7 +14,7 @@ namespace Harmony.Inputs
         Idle
     }
 
-    public abstract class InputDevice : IUpdateable, IInitializable, IDisposable
+    public abstract class InputDevice : IInputDevice
     {
         #region IDisposable Members
 
@@ -30,7 +30,7 @@ namespace Harmony.Inputs
 
         #region IUpdateable Members
 
-        public abstract void Update(GameTime a_ameTime);
+        public abstract void Update(GameTime a_gameTime);
 
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using Harmony.Components;
+﻿using System;
+using Harmony.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,7 @@ namespace Harmony.Objects
         // path these through to specific objects
         public abstract void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager);
         public abstract void UnloadContent();
+        public string Path { get; set; }
 
         #endregion
 

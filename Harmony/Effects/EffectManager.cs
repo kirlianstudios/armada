@@ -20,8 +20,9 @@ namespace Harmony.Effects
 
         public override void Initialize()
         {
-            var basicShader = new Shader("Shaders/BasicShader");
-            AddEffect("Harmony.Effects.BasicShader", basicShader);
+            AddEffect("Harmony.Effects.BasicShader", new Shader("Shaders/BasicShader"));
+
+            AddEffect("Harmony.Effects.TransformColorTexture", new Shader("Shaders/TransformColorTexture"));
 
             base.Initialize();
         }
