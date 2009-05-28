@@ -1,12 +1,13 @@
-﻿#region
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework;
 
-#endregion
-
-namespace Harmony.Cameras.Behaviours.Targeting.Turret
+namespace Harmony.Cameras.Behaviours.Targeting.XYOrbit
 {
-    internal class TurretTargetingCameraBehaviour : ITargetingCameraBehaviour
+
+    public class XYOrbitTargetingCameraBehaviour : ITargetingCameraBehaviour
     {
         #region Implementation of IComponent
 
@@ -14,11 +15,12 @@ namespace Harmony.Cameras.Behaviours.Targeting.Turret
 
         public void Initialize()
         {
+            
         }
 
         public void Update(GameTime a_gameTime)
         {
-            // There'll be three modes
+            
         }
 
         #endregion
