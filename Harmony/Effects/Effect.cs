@@ -1,55 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#region
+
+using Harmony.Components;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Harmony.Components;
-using Harmony.Effects;
-using Harmony.Objects;
+
+#endregion
 
 namespace Harmony.Effects
 {
-    public delegate void EffectParameterHandler(Microsoft.Xna.Framework.Graphics.Effect a_effect, IRenderable a_renderable);
+    public delegate void EffectParameterHandler(Microsoft.Xna.Framework.Graphics.Effect a_effect, IDrawable a_drawable);
 
     public class Effect : ILoadable
     {
-        private string Asset { get; set; }
-
-        public event EffectParameterHandler SetUserParameters;
-        
-        internal Microsoft.Xna.Framework.Graphics.Effect BackingEffect { get; private set; }
-        
         protected Effect(string a_asset)
         {
             Asset = a_asset;
+            LoadContent(Engine.Game.GraphicsDevice, Engine.Game.Content);
         }
-        
-        public virtual void SetParameters(IRenderable a_renderable)
+
+        private string Asset { get; set; }
+
+        public Microsoft.Xna.Framework.Graphics.Effect BackingEffect { get; set; }
+
+        #region ILoadable Members
+
+        public Id Id { get; set; }
+
+        public virtual void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager)
+        {
+            BackingEffect = a_contentManager.Load<Microsoft.Xna.Framework.Graphics.Effect>(Path + Asset);
+        }
+
+        public virtual void UnloadContent()
+        {
+        }
+
+        public string Path { get; set; }
+
+        #endregion
+
+        public event EffectParameterHandler SetUserParameters;
+
+        public virtual void SetParameters(IDrawable a_renderable)
         {
             if (SetUserParameters != null)
             {
                 SetUserParameters(BackingEffect, a_renderable);
             }
-            
+
             BackingEffect.CommitChanges();
         }
-        
-        public virtual void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager)
-        {
-            BackingEffect = a_contentManager.Load<Microsoft.Xna.Framework.Graphics.Effect>(Asset);
-        }
-        
-        public virtual void UnloadContent()
-        {
-            
-        }
-
-        #region ILoadable Members
-
-
-        public string Path { get; set; }
-
-        #endregion
     }
 }

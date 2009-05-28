@@ -1,38 +1,71 @@
-﻿using Harmony.Components;
-using Microsoft.Xna.Framework;
+﻿#region
+
+using Harmony.Components;
+using Harmony.Components.Managers;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+#endregion
 
 namespace Harmony.Cameras
 {
-    public sealed class CameraManager : DrawableGameComponent
+    public class CameraManager : Singleton<CameraManager>, IComponentManager<ICamera>
     {
-        internal CameraManager(Microsoft.Xna.Framework.Game a_game)
-            : base(a_game)
+        public CameraManager()
+        {
+            Components = new ComponentCollection<Id, ICamera>();
+        }
+
+        private static ICamera DefaultCamera { get; set; }
+
+        public static ICamera ActiveCamera { get; private set; }
+
+        public static GraphicsDevice GraphicsDevice { get; set; }
+        public string Path { get; set; }
+
+        #region IComponentManager<ICamera> Members
+
+        public Id Id { get; set; }
+
+        public void Initialize()
+        {
+            DefaultCamera = new TargetCamera
+                                {
+                                    Viewport = Engine.Game.GraphicsDevice.Viewport,
+                                    Id = new Id {Handle = "Camera.Default"}
+                                };
+
+            AddCamera(DefaultCamera);
+
+            SetActiveCamera(DefaultCamera);
+        }
+
+        #endregion
+
+        #region Implementation of IComponentManager<ICamera>
+
+        public ComponentCollection<Id, ICamera> Components { get; set; }
+
+        #endregion
+
+        public void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager)
         {
         }
 
-        private static Camera DefaultCamera { get; set; }
-
-        public static Camera ActiveCamera { get; private set; }
-
-        protected override void LoadContent()
+        public void UnloadContent()
         {
-            DefaultCamera = new Camera(GraphicsDevice.Viewport);
-
-            AddCamera("Harmony.Cameras.Default", DefaultCamera);
-
-            SetActiveCamera("Harmony.Cameras.Default");
-
-            base.LoadContent();
+            SetActiveCamera(DefaultCamera);
         }
 
-        public static void AddCamera(string a_handle, Camera a_camera)
+        public static void AddCamera(ICamera a_camera)
         {
-            ComponentManager.AddComponent(a_handle, a_camera);
+            a_camera.Id = new Id {Guid = GuidManager.NewGuid()};
+            ComponentManager.AddComponent(a_camera.Id, a_camera);
         }
 
-        public static void SetActiveCamera(string a_handle)
+        public static void SetActiveCamera(ICamera a_camera)
         {
-            ActiveCamera = ComponentManager.GetComponent<Camera>(a_handle);
+            ActiveCamera = a_camera;
         }
     }
 }

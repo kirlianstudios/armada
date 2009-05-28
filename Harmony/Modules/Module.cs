@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Harmony.Modules
+﻿namespace Harmony.Modules
 {
     public class Module
     {

@@ -2,5 +2,6 @@
 {
     public interface IComponent
     {
+        Id Id { get; set; }
     }
 }

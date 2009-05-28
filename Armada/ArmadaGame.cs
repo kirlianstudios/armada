@@ -1,7 +1,11 @@
-using Harmony.Components;
+#region
+
+using Harmony;
 using Harmony.Objects;
 using Microsoft.Xna.Framework;
 using Game=Harmony.Game;
+
+#endregion
 
 namespace Armada
 {
@@ -18,7 +22,8 @@ namespace Armada
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            base.Initialize();
+
             //System.Reflection.Assembly.GetAssembly().CreateInstance("")
             //// Tile
             //    for (int row = 0; row < 10; row++)
@@ -40,12 +45,13 @@ namespace Armada
             //        }
             //    }
 
-            var model = new Model("Models/ship");
-            ComponentManager.AddComponent("ship", model);
+            var model = new Model("Models/tile");
+            var id = new Id {Handle = "tile", Guid = GuidManager.NewGuid()};
+            ModelManager.AddModel(id, model);
 
-            //KeyboardDevice.
-
-            base.Initialize();
+            //var quad = new Quad("Textures/harmony", Color.White);
+            //var id = new Id() {Handle = "quad", Guid = GuidManager.NewGuid()};
+            //GameObjectManager.AddGameObject(id, quad);
         }
 
         /// <summary>
@@ -71,11 +77,11 @@ namespace Armada
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="aGameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime aGameTime)
+        protected override void Update(GameTime a_gameTime)
         {
             // TODO: Add your update logic here
 
-            base.Update(aGameTime);
+            base.Update(a_gameTime);
         }
 
         /// <summary>

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿#region
+
+using System;
 using Harmony.Cameras;
-using Harmony.Components;
-using Harmony.Controls;
-using Harmony.Devices.Inputs;
-using Harmony.Effects;
-using Harmony.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Model=Harmony.Objects.Model;
+
+#endregion
 
 namespace Harmony
 {
@@ -28,17 +22,6 @@ namespace Harmony
             Content.RootDirectory = "Content";
 
             IsMouseVisible = true;
-
-            Components.Add(new GameObjectManager(this));
-            Components.Add(new CameraManager(this));
-            Components.Add(new EffectManager(this));
-            Components.Add(new InputManager(this));
-            Components.Add(new ControlManager(this));
-            Components.Add(new ComponentManager(this));
-
-            // Window
-            Window.AllowUserResizing = true;
-            Window.ClientSizeChanged += Window_ClientSizeChanged;
         }
 
         /// <summary>
@@ -53,6 +36,14 @@ namespace Harmony
         /// <value>The sprite batch.</value>
         private SpriteBatch SpriteBatch { get; set; }
 
+        protected override void Initialize()
+        {
+            base.Initialize();
+
+            // Window
+            Window.AllowUserResizing = true;
+            Window.ClientSizeChanged += Window_ClientSizeChanged;
+        }
 
 
         public void ToggleFullScreen()

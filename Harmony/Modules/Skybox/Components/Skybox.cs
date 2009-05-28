@@ -1,10 +1,12 @@
-﻿using Harmony.Cameras;
-using Harmony.Components;
+﻿#region
+
+using Harmony.Cameras;
 using Harmony.Effects;
-using Harmony.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
+#endregion
 
 namespace Harmony.Objects
 {
@@ -27,7 +29,7 @@ namespace Harmony.Objects
 
         private void CreateSides()
         {
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
                 Sides[i] = new Quad(Files[i], Color) {Scale = Scale};
             }
@@ -58,16 +60,16 @@ namespace Harmony.Objects
             VertexDeclaration = Sides[0].VertexDeclaration;
         }
 
-        public override void Render(GraphicsDevice aGraphicsDevice)
+        public override void Draw(GraphicsDevice a_graphicsDevice)
         {
-            aGraphicsDevice.RenderState.DepthBufferWriteEnable = false;
-            for (int i = 0; i < 6; i++)
+            a_graphicsDevice.RenderState.DepthBufferWriteEnable = false;
+            for (var i = 0; i < 6; i++)
             {
                 Sides[i].Position = CameraManager.ActiveCamera.Position + Offset[i];
                 EffectManager.ActiveShader.SetParameters(Sides[i]);
-                Sides[i].Render(aGraphicsDevice);
+                Sides[i].Draw(a_graphicsDevice);
             }
-            aGraphicsDevice.RenderState.DepthBufferWriteEnable = true;
+            a_graphicsDevice.RenderState.DepthBufferWriteEnable = true;
         }
 
         public override void UnloadContent()

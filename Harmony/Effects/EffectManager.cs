@@ -1,44 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#region
+
 using Harmony.Components;
-using Microsoft.Xna.Framework;
+using Harmony.Components.Managers;
 using Microsoft.Xna.Framework.Graphics;
+
+#endregion
 
 namespace Harmony.Effects
 {
-    public sealed class EffectManager : DrawableGameComponent, IInitializable
+    public class EffectManager : Singleton<EffectManager>, IComponentManager<Effect>
     {
-        public static Texture2D ScreenTexture { get; internal set; }
-
-        public EffectManager(Microsoft.Xna.Framework.Game a_game)
-            : base(a_game)
+        public EffectManager()
         {
+            var basicShader = new Shader("Shaders/Basic");
+            AddEffect("Harmony.Effects.Basic", basicShader);
 
+
+            var tctShader = new Shader("Shaders/TransformColorTexture");
+            AddEffect("Harmony.Effects.TransformColorTexture", tctShader);
+
+            DefaultShader = basicShader;
+
+            ActiveShader = DefaultShader;
         }
 
-        public override void Initialize()
+        public static Texture2D ScreenTexture { get; set; }
+
+        public static Shader DefaultShader { get; set; }
+        public static Shader ActiveShader { get; set; }
+
+        #region IComponentManager<Effect> Members
+
+        public void Initialize()
         {
-            AddEffect("Harmony.Effects.BasicShader", new Shader("Shaders/BasicShader"));
-
-            AddEffect("Harmony.Effects.TransformColorTexture", new Shader("Shaders/TransformColorTexture"));
-
-            base.Initialize();
         }
 
-        public static Shader ActiveShader { get; private set; }
-        
+        #endregion
+
         public static void AddEffect(string a_handle, Effect a_effect)
         {
-            ComponentManager.AddComponent(a_handle, a_effect);
+            var id = new Id {Guid = GuidManager.NewGuid(), Handle = string.Empty};
+            Instance.Components.Add(id, a_effect);
         }
-        
-        internal static void SetActiveShader(string a_handle)
-        {
-            ActiveShader = null == a_handle
-                ? ComponentManager.GetComponent<Shader>("Harmony.Effects.BasicShader")
-                : ComponentManager.GetComponent<Shader>(a_handle);
-        }
+
+        #region Implementation of IComponent
+
+        public Id Id { get; set; }
+
+        #endregion
+
+        #region Implementation of IComponentManager<Effect>
+
+        public ComponentCollection<Id, Effect> Components { get; set; }
+
+        #endregion
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿#region
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Harmony.Components;
+
+#endregion
 
 namespace Harmony.Modules
 {

@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#region
+
+using System;
+
+#endregion
 
 namespace Harmony.Components
 {
-    internal sealed class ComponentException : Exception
+    public class ComponentException : HarmonyException
     {
-        internal ComponentException(string a_message) : base(a_message)
+        public ComponentException(string a_message, Exception a_innerException) : base(a_message, a_innerException)
         {
-            
+        }
+
+        public ComponentException(string a_message)
+            : base(a_message, null)
+        {
         }
     }
 }

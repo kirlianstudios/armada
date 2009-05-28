@@ -42,13 +42,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Harmony.jpg">
-      <Name>harmony</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Textures\Skybox\black_side.png">
       <Name>black_side</Name>
       <Importer>TextureImporter</Importer>
@@ -70,8 +63,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Shaders\BasicShader.fx">
-      <Name>BasicShader</Name>
+    <Compile Include="Shaders\Basic.fx">
+      <Name>Basic</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
@@ -86,6 +79,27 @@
   <ItemGroup>
     <Compile Include="Textures\Skybox\white_side.png">
       <Name>white_side</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\cube_with_sphere_on_z.FBX">
+      <Name>cube_with_sphere_on_z</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Harmony\harmony.jpg">
+      <Name>harmony_jpg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Harmony\harmony.png">
+      <Name>harmony_png</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

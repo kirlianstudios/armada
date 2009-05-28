@@ -1,12 +1,18 @@
-﻿using System;
+﻿#region
+
 using Harmony.Components;
+using Harmony.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using IDrawable=Harmony.Components.IDrawable;
+using IUpdateable=Harmony.Components.IUpdateable;
+
+#endregion
 
 namespace Harmony.Objects
 {
-    public abstract class GameObject : IRenderable, ILoadable
+    public abstract class GameObject : IDrawable, ILoadable, IUpdateable
     {
         protected GameObject()
         {
@@ -15,16 +21,11 @@ namespace Harmony.Objects
             Rotation = new Quaternion();
         }
 
-        #region ILoadable Members
+        #region IDrawable Members
+
+        public Id Id { get; set; }
 
         // path these through to specific objects
-        public abstract void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager);
-        public abstract void UnloadContent();
-        public string Path { get; set; }
-
-        #endregion
-
-        #region IRenderable Members
 
         // support general rendering operations
         public Vector3 Position { get; set; }
@@ -32,10 +33,27 @@ namespace Harmony.Objects
         public Quaternion Rotation { get; set; }
 
         // shaders
-        public string Shader { get; set; }
+        public Shader Shader { get; set; }
         public VertexDeclaration VertexDeclaration { get; set; }
 
-        public abstract void Render(GraphicsDevice a_graphicsDevice);
+        public abstract void Draw(GraphicsDevice a_graphicsDevice);
+
+        #endregion
+
+        #region ILoadable Members
+
+        public abstract void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager);
+        public abstract void UnloadContent();
+        public string Path { get; set; }
+
+        #endregion
+
+        #region IUpdateable Members
+
+        public void Update(GameTime a_gameTime)
+        {
+            // nothing
+        }
 
         #endregion
     }

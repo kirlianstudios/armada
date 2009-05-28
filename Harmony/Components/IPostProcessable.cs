@@ -1,5 +1,8 @@
-﻿using IComponent = Harmony.Components.IComponent;
+﻿#region
+
 using Microsoft.Xna.Framework.Graphics;
+
+#endregion
 
 namespace Harmony.Components
 {

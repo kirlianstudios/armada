@@ -1,6 +1,10 @@
-﻿using Harmony.Cameras;
-using Harmony.Components;
+﻿#region
+
+using Harmony.Cameras;
 using Microsoft.Xna.Framework;
+using IDrawable=Harmony.Components.IDrawable;
+
+#endregion
 
 namespace Harmony.Effects
 {
@@ -8,11 +12,12 @@ namespace Harmony.Effects
     {
         public Shader(string a_asset) : base(a_asset)
         {
+            //BackingEffect = new BasicEffect();
         }
 
-        public override void SetParameters(IRenderable a_renderable)
+        public override void SetParameters(IDrawable a_renderable)
         {
-            Matrix world =
+            var world =
                 CameraManager.ActiveCamera.World*
                 Matrix.CreateScale(a_renderable.Scale)*
                 Matrix.CreateFromQuaternion(a_renderable.Rotation)*

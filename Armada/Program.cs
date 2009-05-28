@@ -1,19 +1,24 @@
-using System;
+#region
+
+using Harmony;
+
+#endregion
 
 namespace Armada
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            using (ArmadaGame game = new ArmadaGame())
+            using (var engine = new Engine())
             {
-                game.Run();
+                var game = new ArmadaGame();
+                Engine.Game = game;
+                engine.Initialize();
             }
         }
     }
 }
-

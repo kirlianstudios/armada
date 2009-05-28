@@ -1,10 +1,13 @@
-﻿using Harmony.Cameras;
-using Harmony.Components;
+﻿#region
+
+using Harmony.Cameras;
 using Harmony.Effects;
+using Harmony.Modules.Picking;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Effect=Microsoft.Xna.Framework.Graphics.Effect;
+
+#endregion
 
 namespace Harmony.Objects
 {
@@ -20,10 +23,9 @@ namespace Harmony.Objects
             SpecularPower = 8;
 
             Selected = false;
-        }
 
-        private bool Selected { get; set; }
-        public BoundingBox BoundingBox { get; set; }
+            LoadContent(Engine.Game.GraphicsDevice, Engine.Game.Content);
+        }
 
         public Vector3 AmbientColor { get; set; }
         public Vector3 DiffuseColor { get; set; }
@@ -33,6 +35,11 @@ namespace Harmony.Objects
         public Microsoft.Xna.Framework.Graphics.Model BackingModel { get; private set; }
 
         #region IPickable Members
+
+        public bool Selected { get; set; }
+        public BoundingBox BoundingBox { get; set; }
+
+        #endregion
 
         public BoundingBox GetBoundingBox()
         {
@@ -44,8 +51,6 @@ namespace Harmony.Objects
             Selected = a_selected;
         }
 
-        #endregion
-
         public override void LoadContent(GraphicsDevice a_graphicsDevice, ContentManager a_contentManager)
         {
             BackingModel = a_contentManager.Load<Microsoft.Xna.Framework.Graphics.Model>(Asset);
@@ -53,7 +58,7 @@ namespace Harmony.Objects
 
         public void SetMaterialProperties()
         {
-            Effect effect = EffectManager.ActiveShader.BackingEffect;
+            var effect = EffectManager.ActiveShader.BackingEffect;
             if (null != effect.Parameters["AmbientColor"])
             {
                 effect.Parameters["AmbientColor"].SetValue(AmbientColor);
@@ -69,10 +74,10 @@ namespace Harmony.Objects
             effect.CommitChanges();
         }
 
-        public override void Render(GraphicsDevice a_graphicsDevice)
+        public override void Draw(GraphicsDevice a_graphicsDevice)
         {
-            Matrix World = CameraManager.ActiveCamera.World*Matrix.CreateScale(Scale)*
-                           Matrix.CreateFromQuaternion(Rotation)*Matrix.CreateTranslation(Position);
+            var World = CameraManager.ActiveCamera.World*Matrix.CreateScale(Scale)*
+                        Matrix.CreateFromQuaternion(Rotation)*Matrix.CreateTranslation(Position);
 
             foreach (ModelMesh mesh in BackingModel.Meshes)
             {
@@ -86,20 +91,13 @@ namespace Harmony.Objects
 
                 EffectManager.ActiveShader.BackingEffect.CommitChanges();
 
-                // Each mesh is made of parts (grouped by texture, etc.)
+                // Each mesh is made of parts (grouped on the same material)
                 foreach (ModelMeshPart part in mesh.MeshParts)
                 {
-                    // Change the device settings for each part to be rendered
                     a_graphicsDevice.VertexDeclaration = part.VertexDeclaration;
                     a_graphicsDevice.Vertices[0].SetSource(mesh.VertexBuffer, part.StreamOffset, part.VertexStride);
-
-                    // Make sure we use the texture for the current part also
                     a_graphicsDevice.Textures[0] = ((BasicEffect) part.Effect).Texture;
-
-                    // Set up the shader properties for this mesh part
                     SetMaterialProperties();
-
-                    // Finally draw the actual triangles on the screen
                     a_graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, part.BaseVertex, 0,
                                                            part.NumVertices, part.StartIndex, part.PrimitiveCount);
                 }

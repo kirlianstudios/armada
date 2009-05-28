@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿#region
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
+#endregion
 
 namespace Harmony.Objects
 {
@@ -44,7 +48,7 @@ namespace Harmony.Objects
         {
         }
 
-        public override void Render(GraphicsDevice a_graphicsDevice)
+        public override void Draw(GraphicsDevice a_graphicsDevice)
         {
             a_graphicsDevice.Textures[0] = Texture;
             a_graphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, Vertices, 0, 4, Indexes, 0, 2);

@@ -1,7 +1,11 @@
-﻿using Harmony.Components;
+﻿#region
+
+using Harmony.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
+#endregion
 
 namespace Harmony.Effects
 {
@@ -20,7 +24,8 @@ namespace Harmony.Effects
 
         public void PostProcess(GraphicsDevice a_graphicsDevice)
         {
-            if (ResolvedTexture.Width != a_graphicsDevice.Viewport.Width || ResolvedTexture.Height != a_graphicsDevice.Viewport.Height ||
+            if (ResolvedTexture.Width != a_graphicsDevice.Viewport.Width ||
+                ResolvedTexture.Height != a_graphicsDevice.Viewport.Height ||
                 ResolvedTexture.Format != a_graphicsDevice.DisplayMode.Format)
             {
                 LoadResolveTarget(a_graphicsDevice);

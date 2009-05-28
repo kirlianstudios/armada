@@ -1,8 +1,11 @@
-﻿using System;
-using Harmony.Components;
+﻿#region
+
+using System.Collections.Generic;
+using Harmony.Devices.Inputs.GamePad;
 using Microsoft.Xna.Framework;
-using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
-using IUpdateable=Harmony.Components.IUpdateable;
+using Microsoft.Xna.Framework.Input;
+
+#endregion
 
 namespace Harmony.Devices.Inputs
 {
@@ -16,19 +19,17 @@ namespace Harmony.Devices.Inputs
 
     public abstract class InputDevice : IInputDevice
     {
-        #region IDisposable Members
+        public Dictionary<PlayerIndex, GamePadInputDevice> GamePads { get; set; }
+        public KeyboardInputDevice Keyboard { get; set; }
+        public MouseInputDevice MouseInputDevice { get; set; }
+
+        #region IInputDevice Members
+
+        public Id Id { get; set; }
 
         public abstract void Dispose();
 
-        #endregion
-
-        #region IInitializable Members
-
         public abstract void Initialize();
-
-        #endregion
-
-        #region IUpdateable Members
 
         public abstract void Update(GameTime a_gameTime);
 

@@ -1,27 +1,32 @@
-﻿using Harmony.Controls.Schemes;
-using Harmony.Devices.Inputs;
-using Microsoft.Xna.Framework;
+﻿#region
+
+using Harmony.Components;
+using Harmony.Components.Managers;
+
+#endregion
 
 namespace Harmony.Controls
 {
-    public class ControlManager : GameComponent
+    public class ControlManager : Singleton<ControlManager>, IComponentManager<IComponent>
     {
-        public ControlManager(Microsoft.Xna.Framework.Game a_game)
-            : base(a_game)
-        {
-            Game = a_game;
-            SchemeManager = new SchemeManager(a_game);
-            Game.Components.Add(this);
-        }
+        #region IComponentManager<IComponent> Members
 
-        public InputManager InputManager { get; set; }
-
-        public SchemeManager SchemeManager { get; set; }
-
-        public Microsoft.Xna.Framework.Game Game { get; set; }
-
-        public override void Initialize()
+        public void Initialize()
         {
         }
+
+        #endregion
+
+        #region Implementation of IComponent
+
+        public Id Id { get; set; }
+
+        #endregion
+
+        #region Implementation of IComponentManager<IComponent>
+
+        public ComponentCollection<Id, IComponent> Components { get; set; }
+
+        #endregion
     }
 }

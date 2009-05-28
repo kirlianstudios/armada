@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using Harmony.Components;
+
+#endregion
 
 namespace Harmony.Devices
 {
